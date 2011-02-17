@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="IrcProxy" basedir="." default="compile">
+
+    <property name="src.dir" value="src"/>
+    <property name="classes.dir" value="out/production/ircproxy"/>
+    <property name="javadoc.dir" value="docs/api"/>
+    <property name="lib.dir" value="${basedir}/lib"/>
+
+    <target name="clean" description="Delete all generated files">
+        <delete dir="out/" failonerror="false"/>
+        <delete file="${ant.project.name}.jar"/>
+        <delete file="${ant.project.name}.tar.bz2"/>
+    </target>
+
+    <target name="compile" description="javac Compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}"
+               destdir="${classes.dir}"
+               debug="true"
+               debuglevel="lines,vars,source"
+               nowarn="on">
+            <classpath>
+                <pathelement path="${classes.dir}"/>
+                <fileset dir="${lib.dir}">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+</project>
